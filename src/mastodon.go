@@ -18,6 +18,7 @@ var (
 	Scopes         = []string{"read", "write", "follow"}
 
 	ErrCannotConnect = errors.New("cannot connect to Mastodon")
+	ErrEnvNotSet     = errors.New("env var not set")
 )
 
 func ConnectMastodon() error {
