@@ -17,18 +17,18 @@ var (
 )
 
 const (
-	EnvHost     = "FED_HOST"
-	EnvPort     = "FED_PORT"
-	EnvPassword = "FED_PASSWORD"
+	EnvRedisHost     = "FED_REDIS_HOST"
+	EnvRedisPort     = "FED_REDIS_PORT"
+	EnvRedisPassword = "FED_REDIS_PASSWORD"
 )
 
-func Connect() error {
-	host, b := os.LookupEnv(EnvHost)
+func ConnectRedis() error {
+	host, b := os.LookupEnv(EnvRedisHost)
 	if !b {
 		return ErrEnvNotSet
 	}
 
-	portStr, b := os.LookupEnv(EnvPort)
+	portStr, b := os.LookupEnv(EnvRedisPort)
 	if !b {
 		return ErrEnvNotSet
 	}
@@ -37,7 +37,7 @@ func Connect() error {
 		return err
 	}
 
-	password := os.Getenv(EnvPassword)
+	password := os.Getenv(EnvRedisPassword)
 	Client = redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%d", host, port),
 		Password: password, // no password set

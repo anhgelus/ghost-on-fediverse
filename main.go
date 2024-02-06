@@ -8,7 +8,11 @@ import (
 )
 
 func main() {
-	err := src.Connect()
+	err := src.ConnectRedis()
+	if err != nil {
+		panic(err)
+	}
+	err = src.ConnectMastodon()
 	if err != nil {
 		panic(err)
 	}

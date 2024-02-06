@@ -11,22 +11,23 @@ import (
 type Body struct {
 	Post struct {
 		Current struct {
-			ID            string    `json:"id"`
-			Title         string    `json:"title"`
-			Slug          string    `json:"slug"`
-			FeatureImage  string    `json:"feature_image"`
-			Status        string    `json:"status"`
-			Visibility    string    `json:"visibility"`
-			CreatedAt     time.Time `json:"created_at"`
-			UpdatedAt     time.Time `json:"updated_at"`
-			PublishedAt   time.Time `json:"published_at"`
-			CustomExcerpt string    `json:"customExcerpt"`
-			Authors       []Author  `json:"authors"`
-			Tags          []Tag     `json:"tags"`
-			PrimaryTag    Tag       `json:"primary_tag"`
-			EmailSegment  string    `json:"email_segment"`
-			Url           string    `json:"url"`
-			Excerpt       string    `json:"excerpt"`
+			ID                  string    `json:"id"`
+			Title               string    `json:"title"`
+			Slug                string    `json:"slug"`
+			FeatureImage        string    `json:"feature_image"`
+			FeatureImageCaption string    `json:"feature_image_caption"`
+			Status              string    `json:"status"`
+			Visibility          string    `json:"visibility"`
+			CreatedAt           time.Time `json:"created_at"`
+			UpdatedAt           time.Time `json:"updated_at"`
+			PublishedAt         time.Time `json:"published_at"`
+			CustomExcerpt       string    `json:"customExcerpt"`
+			Authors             []Author  `json:"authors"`
+			Tags                []Tag     `json:"tags"`
+			PrimaryTag          Tag       `json:"primary_tag"`
+			EmailSegment        string    `json:"email_segment"`
+			Url                 string    `json:"url"`
+			Excerpt             string    `json:"excerpt"`
 		} `json:"current"`
 	} `json:"post"`
 }
@@ -70,5 +71,14 @@ func HandleWebhook(w http.ResponseWriter, r *http.Request) {
 		LogError(err)
 		w.WriteHeader(http.StatusBadRequest)
 	}
-	//post := body.Post.Current
+	post := body.Post.Current
+	if post.FeatureImage != "" {
+		//uploadMedia(body)
+	}
 }
+
+//func uploadMedia(body Body) {
+//	post := body.Post.Current
+//	imageUrl := post.FeatureImage
+//	alt := post.FeatureImageCaption
+//}
