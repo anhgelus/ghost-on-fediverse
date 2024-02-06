@@ -9,3 +9,4 @@ Bot publishing Ghost's posts on the Fediverse through the Mastodon API.
 - redis/go-redis
 - Gorilla/mux
 - McKael/madon
+- joho/godotenv

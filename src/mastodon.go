@@ -24,19 +24,19 @@ var (
 func ConnectMastodon() error {
 	instance, v := os.LookupEnv(EnvInstance)
 	if !v {
-		return ErrEnvNotSet
+		return errors.Join(ErrEnvNotSet, errors.New(EnvInstance+" is not set"))
 	}
 	mail, v := os.LookupEnv(EnvLoginMail)
 	if !v {
-		return ErrEnvNotSet
+		return errors.Join(ErrEnvNotSet, errors.New(EnvLoginMail+" is not set"))
 	}
 	password, v := os.LookupEnv(EnvLoginPassword)
 	if !v {
-		return ErrEnvNotSet
+		return errors.Join(ErrEnvNotSet, errors.New(EnvLoginPassword+" is not set"))
 	}
 	token, v := os.LookupEnv(EnvLoginToken)
 	if !v {
-		return ErrEnvNotSet
+		return errors.Join(ErrEnvNotSet, errors.New(EnvLoginToken+" is not set"))
 	}
 	var err error
 	MastodonClient, err = madon.NewApp(

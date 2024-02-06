@@ -3,12 +3,17 @@ package main
 import (
 	"github.com/anhgelus/ghost-on-fediverse/src"
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 	"net/http"
 	"time"
 )
 
 func main() {
-	err := src.ConnectMastodon()
+	err := godotenv.Load(".env")
+	if err != nil {
+		panic(err)
+	}
+	err = src.ConnectMastodon()
 	if err != nil {
 		panic(err)
 	}
