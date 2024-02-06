@@ -2,6 +2,7 @@ package src
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"strings"
 	"time"
@@ -10,7 +11,7 @@ import (
 type Body struct {
 	Post struct {
 		Current struct {
-			ID            int       `json:"id"`
+			ID            string    `json:"id"`
 			Title         string    `json:"title"`
 			Slug          string    `json:"slug"`
 			FeatureImage  string    `json:"feature_image"`
@@ -31,14 +32,14 @@ type Body struct {
 }
 
 type Author struct {
-	ID    int    `json:"id"`
+	ID    string `json:"id"`
 	Name  string `json:"name"`
 	Slug  string `json:"slug"`
 	Email string `json:"email"`
 }
 
 type Tag struct {
-	ID           int    `json:"id"`
+	ID           string `json:"id"`
 	Name         string `json:"name"`
 	Slug         string `json:"slug"`
 	Description  string `json:"description"`
@@ -53,7 +54,7 @@ func HandleWebhook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if !strings.Contains(r.Header.Get("User-Agent"), "Ghost/5") {
-		LogWarn("invalid User-Agent")
+		LogWarn(fmt.Sprintf("invalid User-Agent %s", r.Header.Get("User-Agent")))
 		w.WriteHeader(http.StatusUnauthorized)
 		return
 	}
