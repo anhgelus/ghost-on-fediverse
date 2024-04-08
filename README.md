@@ -1,3 +1,5 @@
+# :warning: This repository is now archived and was replaced by [RSS Goes Social](https://github.com/anhgelus/rss-goes-social) !
+
 # Ghost on Fediverse
 
 Bot publishing Ghost's posts on the Fediverse through the Mastodon API.
